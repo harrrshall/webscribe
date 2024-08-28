@@ -18,10 +18,11 @@ export async function POST(req: Request) {
     }
 
     // Prepare the messages array with the context as the first system message
-    const fullMessages = [
-      { role: 'system', content: `Use the following context for answering user queries: ${context}` },
-      ...messages
-    ];
+// Prepare the messages array with the enhanced context as the first system message
+const fullMessages = [
+  { role: 'system', content: `You are an advanced question-answering chatbot. Use the following context extracted from a specific website to answer user queries: ${context}. Base your responses exclusively on this provided context. If asked a question that cannot be answered using the given information, reply: ** "Sorry, there is no information about your query in this website."** nothing else. Do not provide information beyond what is explicitly stated in the context.` },
+  ...messages
+];
 
     // Get a language model
     const model = google('models/gemini-1.5-flash-latest');
