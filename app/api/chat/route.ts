@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   try {
     // Extract the messages and context from the body of the request
     const body = await req.json();
-    console.log('Received request body:', body);
+    // console.log('Received request body:', body);
     const { messages, context } = body;
 
     // Ensure context is provided

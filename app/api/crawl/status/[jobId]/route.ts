@@ -21,7 +21,7 @@ export async function GET(
       }
     );
 
-    console.log('Crawl status response:', response.data); // Add logging here
+    // console.log('Crawl status response:', response.data); // Add logging here
     return NextResponse.json(response.data);
   } catch (error) {
     console.error('Error checking crawl status:', error);

@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     }
 
     const data = await response.json();
-    console.log('Crawl job submitted:', data);
+    // console.log('Crawl job submitted:', data);
     return NextResponse.json(data);
   } catch (error) {
     console.error('Error calling Firecrawl API:', error);
