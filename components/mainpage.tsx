@@ -11,7 +11,7 @@ import '../app/markdown-styles.css';
 
 
 const JINA_API_URL = 'https://r.jina.ai/';
-const JINA_API_KEY = process.env.NEXT_PUBLIC_JINA_API_KEY;
+const JINA_API_KEY = "jina_d51b3552751146f3b2c0e8c2bcbbd925Dcz6KDK2slzCxzHrGuTofnEg5rm0"
 
 export function Mainpage() {
   const { theme, setTheme } = useTheme();
