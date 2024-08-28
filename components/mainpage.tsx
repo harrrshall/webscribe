@@ -5,24 +5,26 @@ import { useTheme } from 'next-themes';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { Switch } from './ui/switch';
-import { RadioGroup, RadioGroupItem } from './ui/radio-group';
-import { Label } from './ui/label';
-import axios from 'axios';
 import { useChat } from 'ai/react';
+import ReactMarkdown from 'react-markdown';
+import '../app/markdown-styles.css';
+
+
+const JINA_API_URL = 'https://r.jina.ai/';
+const JINA_API_KEY = process.env.NEXT_PUBLIC_JINA_API_KEY;
 
 export function Mainpage() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [url, setUrl] = useState('');
-  const [pageType, setPageType] = useState('single');
   const [isLoading, setIsLoading] = useState(false);
-  const [crawlResponse, setCrawlResponse] = useState('');
   const [isChatReady, setIsChatReady] = useState(false);
   const [error, setError] = useState('');
+  const [websiteContent, setWebsiteContent] = useState('');
 
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     api: '/api/chat',
-    body: { context: crawlResponse },
+    body: { context: websiteContent },
   });
 
   useEffect(() => {
@@ -33,33 +35,41 @@ export function Mainpage() {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  const handleCrawl = async () => {
+  const fetchWebsiteContent = async (url: string) => {
+    try {
+      const response = await fetch(`${JINA_API_URL}${url}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${JINA_API_KEY}`
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.text();
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  };
+
+  const handleFetch = async () => {
     if (!isValidUrl(url)) {
-      alert('Please enter a valid URL');
+      setError('Please enter a valid URL');
       return;
     }
 
-    if (pageType === 'multi') {
-      alert('We are working on the multi-page feature. It will roll out soon!');
-      return;
-    }
-  
     setIsLoading(true);
     setError('');
     try {
-      const response = await axios.post('/api/crawl', { url });
-      const jobId = response.data.jobId;
-  
-      const result = await pollJobStatus(jobId);
-  
-      if (result.data && result.data.length > 0 && result.data[0].content) {
-        setCrawlResponse(result.data[0].content);
-        setIsChatReady(true);
-      } else {
-        setCrawlResponse('');
-      }
+      const data = await fetchWebsiteContent(url);
+      setWebsiteContent(data);
+      setIsChatReady(true);
     } catch (error) {
-      setError('Error crawling website. Please try again.');
+      setError('Error accessing the website. Please try again.');
+      console.error('Fetch error:', error);
     } finally {
       setIsLoading(false);
     }
@@ -67,24 +77,10 @@ export function Mainpage() {
 
   const isValidUrl = (string: string): boolean => {
     try {
-      new URL(string);
+      new URL(string.startsWith('http') ? string : `http://${string}`);
       return true;
     } catch (_) {
       return false;
-    }
-  };
-
-  const pollJobStatus = async (jobId: string) => {
-    while (true) {
-      try {
-        const statusResponse = await axios.get(`/api/crawl/status/${jobId}`);
-        if (statusResponse.data.status === 'completed') {
-          return statusResponse.data;
-        }
-      } catch (error) {
-        console.error('Error polling job status:', error);
-      }
-      await new Promise(resolve => setTimeout(resolve, 5000));
     }
   };
 
@@ -92,8 +88,8 @@ export function Mainpage() {
     e.preventDefault();
     setError('');
     try {
-      if (!crawlResponse || crawlResponse.length === 0) {
-        setError('No crawl data available. Please crawl a website first.');
+      if (!isChatReady) {
+        setError('Please fetch a website first.');
         return;
       }
       await handleSubmit(e);
@@ -137,31 +133,18 @@ export function Mainpage() {
                   className="flex-1"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleCrawl()}
+                  onKeyPress={(e) => e.key === 'Enter' && handleFetch()}
                 />
                 <Button
                   variant="ghost"
                   size="icon"
                   className="ml-2"
-                  onClick={handleCrawl}
+                  onClick={handleFetch}
                   disabled={isLoading}
                 >
                   {isLoading ? <LoadingDots /> : <ArrowRightIcon className="w-5 h-5" />}
                 </Button>
               </div>
-              <RadioGroup className="flex space-x-4 mb-4" value={pageType} onValueChange={setPageType}>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="single" id="single" />
-                  <Label htmlFor="single">Single Page</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="multi" id="multi" />
-                  <Label htmlFor="multi" className="flex items-center">
-                    Multi Page
-                    <CrownIcon className="w-4 h-4 ml-1 text-yellow-400" />
-                  </Label>
-                </div>
-              </RadioGroup>
               {error && <p className="text-red-500 mt-2">{error}</p>}
             </div>
           ) : (
@@ -175,18 +158,18 @@ export function Mainpage() {
                 {messages.map((message, index) => (
                   <div
                     key={index}
-                    className={`mb-4 ${
-                      message.role === 'user' ? 'text-right' : 'text-left'
-                    }`}
+                    className={`mb-4 ${message.role === 'user' ? 'text-right' : 'text-left'
+                      }`}
                   >
                     <div
-                      className={`inline-block p-2 rounded-lg ${
-                        message.role === 'user'
+                      className={`inline-block p-2 rounded-lg ${message.role === 'user'
                           ? 'bg-primary text-primary-foreground'
                           : 'bg-secondary text-secondary-foreground'
-                      }`}
+                        }`}
                     >
-                      {message.content}
+                      <ReactMarkdown className="markdown-content">
+                        {message.content}
+                      </ReactMarkdown>
                     </div>
                   </div>
                 ))}
@@ -234,25 +217,6 @@ function ArrowRightIcon(props: React.SVGProps<SVGSVGElement>) {
     >
       <path d="M5 12h14" />
       <path d="m12 5 7 7-7 7" />
-    </svg>
-  );
-}
-
-function CrownIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14" />
     </svg>
   );
 }
