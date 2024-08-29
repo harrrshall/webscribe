@@ -88,7 +88,3 @@ Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) fi
 ### License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-### Contact
-
-For any inquiries or support, please contact the project maintainer at [your-email@example.com](your-email@example.com).
