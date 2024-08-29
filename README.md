@@ -75,11 +75,9 @@ The repository is structured as follows:
    ```
 4. **Set Environment Variables**
    ```bash
-   #Firecrawl API Key
-    FIRECRAWL_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  # Obtain from https://www.firecrawl.dev/app/api-keys
-
     #Google Generative AI API Key
-    GOOGLE_GENERATIVE_AI_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx  # Obtain from https://aistudio.google.com/app/apikey
+    # Obtain from https://aistudio.google.com/app/apikey
+    GOOGLE_GENERATIVE_AI_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     create .env.local file and put it in that
    ```
 
