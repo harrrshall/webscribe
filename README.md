@@ -19,10 +19,7 @@ The repository is structured as follows:
     └── api
         └── chat
             └── route.ts
-        └── crawl
-            └── route.ts
-                └── [jobId]
-                    └── route.ts
+
     └── favicon.ico
     └── globals.css
     └── layout.tsx
