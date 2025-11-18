@@ -1,64 +1,76 @@
-### 1. Write Maxwell’s Relationships
-Maxwell’s equations relate the properties of pressure ($P$), volume ($V$), temperature ($T$), and entropy ($S$) to each other. They are derived from the exact differentials of the four thermodynamic potentials ($U, H, A, G$).
-Here are the four fundamental Maxwell relations:
-1.  **From Internal Energy ($U$):**
-    $$\left( \frac{\partial T}{\partial V} \right)_S = - \left( \frac{\partial P}{\partial S} \right)_V$$
-2.  **From Enthalpy ($H$):**
-    $$\left( \frac{\partial T}{\partial P} \right)_S = \left( \frac{\partial V}{\partial S} \right)_P$$
-3.  **From Helmholtz Function ($A$ or $F$):**
-    $$\left( \frac{\partial P}{\partial T} \right)_V = \left( \frac{\partial S}{\partial V} \right)_T$$
-4.  **From Gibbs Function ($G$):**
-    $$\left( \frac{\partial V}{\partial T} \right)_P = - \left( \frac{\partial S}{\partial P} \right)_T$$
-### 2. Define Volume Expansivity ($\beta$) and Isothermal Compressibility ($\alpha$)
-These coefficients describe how the volume of a substance changes with temperature and pressure.
-* **Volume Expansivity ($\beta$):** Also called the coefficient of volume expansion. It represents the fractional change in volume per unit change in temperature while keeping pressure constant.
-    $$\beta = \frac{1}{v} \left( \frac{\partial v}{\partial T} \right)_P$$
-* **Isothermal Compressibility ($\alpha$ or $k_T$):** It represents the fractional change in volume per unit change in pressure while keeping temperature constant. (The negative sign indicates that volume decreases as pressure increases).
-    $$\alpha = - \frac{1}{v} \left( \frac{\partial v}{\partial P} \right)_T$$
-### 3. Explain the Joule–Thomson Coefficient ($\mu$)
-The Joule–Thomson coefficient measures the rate of change of temperature with respect to pressure during a throttling process (which is isenthalpic, meaning Enthalpy $H$ is constant).
-**Mathematically:**
-$$\mu_{JT} = \left( \frac{\partial T}{\partial P} \right)_h$$
-* If $\mu > 0$: The gas cools upon expansion (Temperature drops as Pressure drops).
-* If $\mu < 0$: The gas heats upon expansion.
-* If $\mu = 0$: No temperature change (Ideal gas behavior).
-### 4. Explain the Joule–Thomson Effect and Inversion Temperature
-**The Joule–Thomson Effect:**
-When a real gas is forced through a valve or porous plug (throttling) from a region of high pressure to low pressure under adiabatic conditions, its temperature changes. This phenomenon is called the Joule-Thomson effect. For most gases at room temperature, this causes cooling.
-**Inversion Temperature ($T_i$):**
-There is a specific temperature for every gas called the **Inversion Temperature**.
-* If the initial temperature of the gas is **below** the Inversion Temperature, the gas will **cool** on expansion.
-* If the initial temperature is **above** the Inversion Temperature, the gas will **heat up** on expansion.
-At the inversion point, the Joule-Thomson coefficient $\mu = 0$.
-### 5. Why Hydrogen gas cannot be cooled by the Joule–Thomson effect (or why it needs to be precooled)
-For cooling to occur during throttling, the gas must be below its Maximum Inversion Temperature.
-* Most gases (like $N_2$, $O_2$, Air) have very high inversion temperatures (well above room temperature). So, when we throttle them at room temperature, they cool down.
-* **Hydrogen (and Helium)** are exceptions. The inversion temperature of Hydrogen is very low (approx **-80°C** or **193 K**).
-* **The Problem:** Room temperature ($\approx 25^\circ C$) is *higher* than Hydrogen’s inversion temperature. Therefore, if you throttle Hydrogen at room temperature, its temperature will **rise** (heating effect) instead of falling.
-* **The Solution:** Hydrogen must be **pre-cooled** (using a heat exchanger or liquid nitrogen) to a temperature below -80°C *before* it enters the throttling valve to experience the cooling effect.
-### 6. Define Gibbs’ and Helmholtz’ Functions. Compare their importance.
-These are thermodynamic potentials used to determine the spontaneity of a process.
-**Helmholtz Function ($A$ or $F$):**
-* **Definition:** $A = U - TS$ (Internal Energy $-$ Temperature $\times$ Entropy).
-* **Importance:** It measures the "useful work" obtainable from a closed system at a constant temperature and volume. In equilibrium, $dA \le 0$.
-**Gibbs Function ($G$):**
-* **Definition:** $G = H - TS$ (Enthalpy $-$ Temperature $\times$ Entropy).
-* **Importance:** It measures the maximum useful work (other than expansion work) obtainable from a system at a constant temperature and pressure.
-**Comparison/Importance:**
-* **Gibbs is generally more important for Engineers:** Most engineering processes (chemical reactions, phase changes, turbines) occur at constant pressure and temperature (open to the atmosphere). Therefore, the Gibbs function is the primary criterion for equilibrium and spontaneity in these systems.
-### 7. Mole Fraction and Volume Fraction
-Consider a mixture of gases.
-* **Mole Fraction ($x_i$):** The ratio of the number of moles of a specific component ($n_i$) to the total number of moles of the mixture ($n_{total}$).
-    $$x_i = \frac{n_i}{\Sigma n}$$
-* **Volume Fraction ($v_f$):** The ratio of the volume a specific gas would occupy if it were alone at the mixture temperature and pressure ($V_i$) to the total volume of the mixture ($V_{total}$).
-    $$v_f = \frac{V_i}{V_{total}}$$
-* **Note:** For Ideal Gases, **Mole Fraction = Volume Fraction = Pressure Fraction.**
-### 8. Explain Dalton’s Law of Partial Pressure
-**Statement:**
-Dalton’s Law states that the total pressure exerted by a mixture of non-reacting ideal gases is equal to the sum of the partial pressures of the individual gases.
-**Partial Pressure ($p_i$):**
-The pressure that a single component would exert if it alone occupied the entire volume of the mixture at the same temperature.
-**Formula:**
-$$P_{total} = p_1 + p_2 + p_3 + \dots + p_n$$
-Where for any component $i$, the partial pressure is related to the total pressure by the mole fraction ($x_i$):
-$$p_i = x_i \times P_{total}$$
+### 1. Derive the First and Second Tds Equations
+These equations relate entropy changes ($ds$) to measurable properties like $T, P, V, C_p,$ and $C_v$.
+#### **First Tds Equation (in terms of T and V)**
+Assume Entropy ($S$) is a function of Temperature ($T$) and Volume ($V$): $S = f(T, V)$.
+By the chain rule of differentiation:
+$$dS = \left( \frac{\partial S}{\partial T} \right)_V dT + \left( \frac{\partial S}{\partial V} \right)_T dV$$
+Multiply the whole equation by $T$:
+$$TdS = T \left( \frac{\partial S}{\partial T} \right)_V dT + T \left( \frac{\partial S}{\partial V} \right)_T dV$$
+We know that specific heat at constant volume is $C_v = T \left( \frac{\partial S}{\partial T} \right)_V$.
+Using Maxwell’s 3rd relation: $\left( \frac{\partial S}{\partial V} \right)_T = \left( \frac{\partial P}{\partial T} \right)_V$.
+Substitute these back:
+$$TdS = C_v dT + T \left( \frac{\partial P}{\partial T} \right)_V dV$$
+*(This is the First Tds Equation)*
+#### **Second Tds Equation (in terms of T and P)**
+Assume Entropy ($S$) is a function of Temperature ($T$) and Pressure ($P$): $S = f(T, P)$.
+By the chain rule:
+$$dS = \left( \frac{\partial S}{\partial T} \right)_P dT + \left( \frac{\partial S}{\partial P} \right)_T dP$$
+Multiply the whole equation by $T$:
+$$TdS = T \left( \frac{\partial S}{\partial T} \right)_P dT + T \left( \frac{\partial S}{\partial P} \right)_T dP$$
+We know that specific heat at constant pressure is $C_p = T \left( \frac{\partial S}{\partial T} \right)_P$.
+Using Maxwell’s 4th relation: $\left( \frac{\partial S}{\partial P} \right)_T = -\left( \frac{\partial V}{\partial T} \right)_P$.
+Substitute these back:
+$$TdS = C_p dT - T \left( \frac{\partial V}{\partial T} \right)_P dP$$
+*(This is the Second Tds Equation)*
+### 2 & 3. Derive the General Expression for ($C_p - C_v$)
+*This covers both Question 2 and Question 3.*
+**Step 1: Equate the two Tds equations derived above.**
+$$C_v dT + T \left( \frac{\partial P}{\partial T} \right)_V dV = C_p dT - T \left( \frac{\partial V}{\partial T} \right)_P dP$$
+Rearrange to solve for $dT$:
+$$(C_p - C_v) dT = T \left( \frac{\partial P}{\partial T} \right)_V dV + T \left( \frac{\partial V}{\partial T} \right)_P dP$$
+Divide by $(C_p - C_v)$:
+$$dT = \frac{T}{C_p - C_v} \left( \frac{\partial P}{\partial T} \right)_V dV + \frac{T}{C_p - C_v} \left( \frac{\partial V}{\partial T} \right)_P dP \quad \dots \text{(Equation A)}$$
+**Step 2: Consider T as a function of independent variables V and P.**
+$$T = f(V, P)$$
+$$dT = \left( \frac{\partial T}{\partial V} \right)_P dV + \left( \frac{\partial T}{\partial P} \right)_V dP \quad \dots \text{(Equation B)}$$
+**Step 3: Compare Coefficients.**
+Compare the coefficient of $dV$ in Equation A and Equation B:
+$$\left( \frac{\partial T}{\partial V} \right)_P = \frac{T}{C_p - C_v} \left( \frac{\partial P}{\partial T} \right)_V$$
+**Step 4: Solve for ($C_p - C_v$).**
+$$C_p - C_v = \frac{T \left( \frac{\partial P}{\partial T} \right)_V}{\left( \frac{\partial T}{\partial V} \right)_P}$$
+Using the reciprocal relation $\frac{1}{(\partial T / \partial V)_P} = \left( \frac{\partial V}{\partial T} \right)_P$:
+$$C_p - C_v = T \left( \frac{\partial P}{\partial T} \right)_V \left( \frac{\partial V}{\partial T} \right)_P$$
+**Step 5: Apply the Cyclic Rule.**
+For variables P, V, T:
+$$\left( \frac{\partial P}{\partial T} \right)_V \left( \frac{\partial T}{\partial V} \right)_P \left( \frac{\partial V}{\partial P} \right)_T = -1$$
+Rearranging for $\left( \frac{\partial P}{\partial T} \right)_V$:
+$$\left( \frac{\partial P}{\partial T} \right)_V = - \frac{1}{\left( \frac{\partial T}{\partial V} \right)_P \left( \frac{\partial V}{\partial P} \right)_T} = - \left( \frac{\partial V}{\partial T} \right)_P \left( \frac{\partial P}{\partial V} \right)_T$$
+
+Substitute this into the result from Step 4:
+$$C_p - C_v = T \left[ - \left( \frac{\partial V}{\partial T} \right)_P \left( \frac{\partial P}{\partial V} \right)_T \right] \left( \frac{\partial V}{\partial T} \right)_P$$
+**Final Result:**
+$$C_p - C_v = -T \left( \frac{\partial V}{\partial T} \right)^2_P \left( \frac{\partial P}{\partial V} \right)_T$$
+### 4. Prove ideal gas relations for $\beta$ and $\alpha$
+**Ideal Gas Equation:** $Pv = RT$ $\rightarrow$ $v = \frac{RT}{P}$
+#### **Part A: Prove $\beta = \frac{1}{T}$**
+Definition of Volume Expansivity ($\beta$):
+$$\beta = \frac{1}{v} \left( \frac{\partial v}{\partial T} \right)_P$$
+Differentiating $v = \frac{RT}{P}$ with respect to $T$ (holding $P$ constant):
+$$\left( \frac{\partial v}{\partial T} \right)_P = \frac{R}{P}$$
+Substitute this into the definition:
+$$\beta = \frac{1}{v} \cdot \frac{R}{P}$$
+Since $v = RT/P$, substitute $v$:
+$$\beta = \frac{P}{RT} \cdot \frac{R}{P}$$
+$$\beta = \frac{1}{T}$$
+*(Proved)*
+#### **Part B: Prove $\alpha = \frac{1}{P}$**
+Definition of Isothermal Compressibility ($\alpha$):
+$$\alpha = -\frac{1}{v} \left( \frac{\partial v}{\partial P} \right)_T$$
+Differentiating $v = \frac{RT}{P}$ with respect to $P$ (holding $T$ constant):
+$$\left( \frac{\partial v}{\partial P} \right)_T = RT \cdot (-P^{-2}) = -\frac{RT}{P^2}$$
+Since $RT/P = v$, this simplifies to:
+$$\left( \frac{\partial v}{\partial P} \right)_T = -\frac{v}{P}$$
+Substitute this into the definition:
+$$\alpha = -\frac{1}{v} \left( -\frac{v}{P} \right)$$
+$$\alpha = \frac{1}{P}$$
+*(Proved)*
