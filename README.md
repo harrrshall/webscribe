@@ -1,82 +1,87 @@
-### 1. Perpetual Motion Machine of the First Kind (PMM-1)
-**Definition:**
-A Perpetual Motion Machine of the First Kind (PMM-1) is a hypothetical device that can produce work continuously without absorbing energy from its surroundings, or a machine that creates energy out of nothing.
-**Violation of First Law:**
-The First Law of Thermodynamics states that energy cannot be created or destroyed, only converted from one form to another (Conservation of Energy).
-$$\oint \delta W \neq \oint \delta Q$$
-* In a PMM-1, the machine purports to deliver work ($W_{out} > 0$) while heat input is zero ($Q_{in} = 0$), or it generates more energy than it consumes.
-* Since this violates the conservation of energy principle, **PMM-1 is impossible.**
-### 2. Show that Internal Energy is a Property of the System
-To prove this, we use the First Law of Thermodynamics for a cycle and a change of state.
-**Proof:**
-1.  Consider a system undergoing a cycle from State 1 to State 2 via Path A, and returning to State 1 via Path B.
-    * For the cycle 1-A-2-B-1:
-    $$\oint (\delta Q - \delta W) = 0$$
-    $$\int_{1,A}^{2} (\delta Q - \delta W) + \int_{2,B}^{1} (\delta Q - \delta W) = 0$$
-2.  Now, consider a different cycle where the system goes from 1 to 2 via Path A, but returns via a new Path C.
-    * For the cycle 1-A-2-C-1:
-    $$\int_{1,A}^{2} (\delta Q - \delta W) + \int_{2,C}^{1} (\delta Q - \delta W) = 0$$
-3.  Comparing the two equations:
-    $$\int_{2,B}^{1} (\delta Q - \delta W) = \int_{2,C}^{1} (\delta Q - \delta W)$$
-**Conclusion:**
-The quantity $(\delta Q - \delta W)$ is the same regardless of whether the system follows path B or path C. A quantity that depends only on the end states and not the path history is a **point function** or a **property**. We call this property **Internal Energy ($dE$ or $dU$)**.
-$$dE = \delta Q - \delta W$$
-### 3. Show that Work is a Path Function
-**Definition:**
-A path function is a quantity whose value depends on the particular path followed during a process.
-**Proof:**
-1.  Work done in a quasi-static process is given by the area under the curve on a P-V (Pressure-Volume) diagram:
-    $$W = \int_{1}^{2} P \, dV$$
-2.  Consider two states, State 1 and State 2, on a P-V diagram.
-3.  Connect them via **Path A** (a higher pressure path) and **Path B** (a lower pressure path).
-4.  The area under Path A represents $W_A$. The area under Path B represents $W_B$.
-5.  Visually and mathematically, **Area A $\neq$ Area B**.
-**Conclusion:**
-Since the work done differs depending on which path is taken between the same two states, **Work is a path function**, not a property. It is an inexact differential ($\delta W$).
-### 4. Quasi-static Process
-**Definition:**
-A quasi-static (meaning "almost static") process is a thermodynamic process that happens infinitely slowly. The system remains infinitesimally close to an equilibrium state at all times.
-**Characteristics:**
-* **Infinite Slowness:** The process occurs so slowly that the departure from thermodynamic equilibrium is negligible.
-* **Reversibility:** Quasi-static processes involving no friction are reversible.
-* **Uniform Properties:** Properties like pressure and temperature are uniform throughout the system at any given instant.
-* **Graphical Representation:** It can be represented as a continuous solid line on a property diagram (like P-V or T-s diagrams).
-### 5. The Zeroth Law of Thermodynamics
+### 19. What is the Entropy Principle?
+The **Entropy Principle** (also known as the Principle of Increase of Entropy) is a statement derived from the Second Law of Thermodynamics. It states that for an **isolated system** (a system that does not exchange energy or mass with its surroundings), the total entropy can only increase or remain constant; it can never decrease.
+* **Mathematically:**
+    $$(dS)_{isolated} \geq 0$$
+* **Interpretation:**
+    * **For Reversible Processes:** The entropy of an isolated system remains constant ($dS = 0$).
+    * **For Irreversible (Real) Processes:** The entropy of an isolated system increases ($dS > 0$).
+* **Implication:** Since the Universe can be considered an isolated system, the entropy of the Universe is continuously increasing. This principle dictates the direction of natural processes
+### 20. Explain the Clausius Inequality.
+The **Clausius Inequality** provides a criterion to determine whether a thermodynamic cycle is reversible, irreversible, or impossible. It applies the Second Law of Thermodynamics to cyclic processes.
 **Statement:**
-If Body A is in thermal equilibrium with Body B, and Body B is in thermal equilibrium with Body C, then **Body A must be in thermal equilibrium with Body C**.
-**Explanation:**
-* **Thermal Equilibrium:** When two bodies are in contact and there is no net transfer of heat between them, they are at the same temperature.
-* **Significance:** This law provides the basis for the measurement of temperature. If Body B is a thermometer, we can use it to verify that Body A and Body C are at the same temperature without bringing them into direct contact.
-### 6. Intensive and Extensive Properties
-**1. Intensive Properties:**
-These are properties that are **independent** of the mass or size of the system. If you divide a system in half, these properties remain unchanged in each part.
-* *Examples:* Pressure ($P$), Temperature ($T$), Density ($\rho$), Viscosity, Specific Volume ($v$).
-**2. Extensive Properties:**
-These are properties that **depend** on the mass or size of the system. If you divide the system, the value of the property gets divided.
-* *Examples:* Total Volume ($V$), Total Mass ($m$), Total Internal Energy ($U$), Enthalpy ($H$), Entropy ($S$).
-> **Note:** The ratio of two extensive properties usually results in an intensive property (e.g., Mass/Volume = Density).
-### 7. Derivation of Displacement Work
-**Problem:**
-Derive displacement work for constant-temperature expansion for a gas obeying:
-$$\left(p+\frac{a}{V^2}\right)(V-b) = mRT$$
-**Solution:**
-**Step 1: Express Pressure ($p$) in terms of Volume ($V$).**
-Rearrange the given equation to solve for $p$:
-$$p + \frac{a}{V^2} = \frac{mRT}{V-b}$$
-$$p = \frac{mRT}{V-b} - \frac{a}{V^2}$$
-**Step 2: Apply the formula for Displacement Work.**
-$$W_{1-2} = \int_{V_1}^{V_2} p \, dV$$
-Substitute the expression for $p$:
-$$W_{1-2} = \int_{V_1}^{V_2} \left( \frac{mRT}{V-b} - \frac{a}{V^2} \right) dV$$
-**Step 3: Integrate.**
-We treat Temperature ($T$) as constant (isothermal process). $m$, $R$, $a$, and $b$ are also constants.
-$$W_{1-2} = mRT \int_{V_1}^{V_2} \frac{1}{V-b} \, dV - a \int_{V_1}^{V_2} V^{-2} \, dV$$
-* Integration of first term: $\ln(V-b)$
-* Integration of second term: $\frac{V^{-1}}{-1} = -\frac{1}{V}$
-**Step 4: Apply Limits.**
-$$W_{1-2} = mRT \left[ \ln(V-b) \right]_{V_1}^{V_2} - a \left[ -\frac{1}{V} \right]_{V_1}^{V_2}$$
-$$W_{1-2} = mRT (\ln(V_2-b) - \ln(V_1-b)) + a \left( \frac{1}{V_2} - \frac{1}{V_1} \right)$$
-**Final Formula:**
-$$W_{1-2} = mRT \ln\left(\frac{V_2-b}{V_1-b}\right) - a\left(\frac{1}{V_1} - \frac{1}{V_2}\right)$$
-*(Alternatively written as)*:
-$$W_{1-2} = mRT \ln\left(\frac{V_2-b}{V_1-b}\right) + a\left(\frac{1}{V_2} - \frac{1}{V_1}\right)$$
+For any system undergoing a thermodynamic cycle involving heat transfer $\delta Q$ at a boundary temperature $T$, the cyclic integral of $\frac{\delta Q}{T}$ is less than or equal to zero.
+**Mathematical Expression:**
+$$\oint \frac{\delta Q}{T} \leq 0$$
+**Conditions:**
+1.  **$\oint \frac{\delta Q}{T} = 0$:** The cycle is **Reversible**.
+2.  **$\oint \frac{\delta Q}{T} < 0$:** The cycle is **Irreversible** (Real cycle).
+3.  **$\oint \frac{\delta Q}{T} > 0$:** The cycle is **Impossible** (Violates the Second Law).
+### 21. Explain Exergy (Availability) and Anergy.
+These concepts classify energy based on its "quality" or usefulness.
+* **Exergy (Availability):**
+    Exergy is the **maximum useful work** that can be obtained from a system as it comes into equilibrium with its surroundings (often called the "dead state," typically at pressure $P_0$ and temperature $T_0$).
+    * It represents the "high-grade" or useful portion of energy.
+    * Exergy is destroyed in irreversible processes due to entropy generation.
+* **Anergy (Unavailable Energy):**
+    Anergy is the portion of energy that **cannot be converted into work**, even by a reversible heat engine. It must be rejected to the surroundings to satisfy the Second Law of Thermodynamics.
+    * It represents the "low-grade" or useless portion of energy.
+**Relationship:**
+$$\text{Total Energy} = \text{Exergy} + \text{Anergy}$$
+### 22. Derive loss of available energy due to heat transfer across a finite temperature difference.
+**Scenario:**
+Consider a quantity of heat $Q$ being transferred from a high-temperature source at $T_1$ to a lower-temperature body at $T_2$. The surroundings are at ambient temperature $T_0$. We assume $T_1 > T_2 > T_0$.
+**1. Entropy Change of the Source (Source loses heat):**
+$$\Delta S_{source} = -\frac{Q}{T_1}$$
+**2. Entropy Change of the Body (Body gains heat):**
+$$\Delta S_{body} = +\frac{Q}{T_2}$$
+**3. Net Entropy Generation ($\Delta S_{gen}$):**
+$$\Delta S_{gen} = \Delta S_{source} + \Delta S_{body}$$
+$$\Delta S_{gen} = -\frac{Q}{T_1} + \frac{Q}{T_2} = Q \left( \frac{1}{T_2} - \frac{1}{T_1} \right)$$
+$$\Delta S_{gen} = Q \left( \frac{T_1 - T_2}{T_1 T_2} \right)$$
+**4. Loss of Available Energy (Irreversibility $I$):**
+According to the Gouy-Stodola theorem, the loss of available energy is the product of the ambient temperature and the entropy generation.
+$$I = T_0 \cdot \Delta S_{gen}$$
+Substituting $\Delta S_{gen}$:
+$$\text{Loss of Available Energy} = T_0 Q \left( \frac{T_1 - T_2}{T_1 T_2} \right)$$
+### 23. Derive entropy change for a polytropic process in terms of $(v_1, v_2)$.
+**Recall General Entropy Equation for Ideal Gas:**
+$$s_2 - s_1 = c_v \ln\left(\frac{T_2}{T_1}\right) + R \ln\left(\frac{v_2}{v_1}\right) \quad \text{--- (Equation A)}$$
+**Polytropic Process Relation:**
+For a polytropic process $Pv^n = C$, the relationship between temperature and volume is:
+$$\frac{T_2}{T_1} = \left( \frac{v_1}{v_2} \right)^{n-1}$$
+**Substitution:**
+Substitute the temperature ratio into Equation A:
+$$s_2 - s_1 = c_v \ln\left[ \left( \frac{v_1}{v_2} \right)^{n-1} \right] + R \ln\left(\frac{v_2}{v_1}\right)$$
+Using logarithm power rules ($\ln(x^a) = a \ln x$):
+$$s_2 - s_1 = c_v (n-1) \ln\left(\frac{v_1}{v_2}\right) + R \ln\left(\frac{v_2}{v_1}\right)$$
+Note that $\ln(v_1/v_2) = -\ln(v_2/v_1)$:
+$$s_2 - s_1 = -c_v (n-1) \ln\left(\frac{v_2}{v_1}\right) + R \ln\left(\frac{v_2}{v_1}\right)$$
+Factor out $\ln(v_2/v_1)$:
+$$s_2 - s_1 = \left[ R - c_v(n-1) \right] \ln\left(\frac{v_2}{v_1}\right)$$
+**Simplify using $R = c_p - c_v$:**
+$$\text{Coefficient} = (c_p - c_v) - (n c_v - c_v)$$
+$$\text{Coefficient} = c_p - c_v - n c_v + c_v$$
+$$\text{Coefficient} = c_p - n c_v = c_v \left( \frac{c_p}{c_v} - n \right)$$
+Since $\gamma = c_p/c_v$:
+$$\text{Coefficient} = c_v (\gamma - n)$$
+**Final Result:**
+$$s_2 - s_1 = c_v (\gamma - n) \ln\left(\frac{v_2}{v_1}\right)$$
+### 24. Show that entropy change for a non-flow process is: $s_2 - s_1 = c_p \ln(T_2/T_1) - R \ln(p_2/p_1)$
+**Step 1: Start with the First Law and Entropy Definition**
+From the first TdS equation (property relation):
+$$Tds = dh - vdp$$
+**Step 2: Substitute Property Relations for Ideal Gas**
+For an ideal gas, the change in enthalpy is:
+$$dh = c_p dT$$
+From the ideal gas equation of state ($Pv = RT$), specific volume is:
+$$v = \frac{RT}{p}$$
+**Step 3: Substitute into TdS equation**
+$$Tds = c_p dT - \left(\frac{RT}{p}\right) dp$$
+**Step 4: Divide by T**
+$$ds = c_p \frac{dT}{T} - R \frac{dp}{p}$$
+**Step 5: Integrate between state 1 and state 2**
+Assuming $c_p$ is constant:
+$$\int_{1}^{2} ds = \int_{1}^{2} c_p \frac{dT}{T} - \int_{1}^{2} R \frac{dp}{p}$$
+$$s_2 - s_1 = c_p \ln\left(\frac{T_2}{T_1}\right) - R \ln\left(\frac{p_2}{p_1}\right)$$
+
+**(Hence Shown)**
