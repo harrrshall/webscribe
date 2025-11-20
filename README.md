@@ -1,97 +1,110 @@
-### **Question 1: Derivation of Equation of Motion for Support Motion**
-**Problem Statement:** Derive the differential equation and its solution for support (base) motion using complex algebra ($y = Ye^{i\omega t}$). 
-**1. System Definition:**
-* A spring-mass-damper system where the base moves.
-* **Variables:**
-    * $m$: Mass 
-    * $k$: Stiffness 
-    * $c$: Damping coefficient 
-    * $x$: Displacement of mass (absolute) 
-    * $y$: Displacement of base/support 
-**2. Relative Motion:**
-* Let relative motion between mass and base be $z = x - y$. 
-* **Forces acting on the mass:**
-    * Spring Force: $k(x-y) = kz$ 
-    * Damping Force: $c(\dot{x}-\dot{y}) = c\dot{z}$ 
-**3. Equation of Motion (Newton's 2nd Law):**
-* Net Force = $ma$ 
-* $-k(x-y) - c(\dot{x}-\dot{y}) = m\ddot{x}$ 
-* Substituting $x = z + y$ (so $\ddot{x} = \ddot{z} + \ddot{y}$):
-    $$m(\ddot{z} + \ddot{y}) + c\dot{z} + kz = 0$$ 
-    $$m\ddot{z} + c\dot{z} + kz = -m\ddot{y}$$ 
-**4. Solution using Harmonic Support Motion:**
-* Assume support motion $y = Ye^{i\omega t}$. 
-* Then velocity $\dot{y} = Y(i\omega)e^{i\omega t}$ and acceleration $\ddot{y} = -Y\omega^2 e^{i\omega t}$. 
-* Substitute into the differential equation:
-    $$m\ddot{z} + c\dot{z} + kz = m\omega^2 Y e^{i\omega t}$$ 
-* Assume a harmonic response for relative motion $z = Z e^{i\omega t}$. 
-* Substituting derivatives of $z$ into the equation and solving for amplitude $Z$:
-    $$Z = \frac{m\omega^2 Y}{-m\omega^2 + ic\omega + k}$$ 
-**5. Absolute Amplitude ($X$):**
-* Since $x = z + y$:
-    $$X = \left( \frac{k + ic\omega}{k - m\omega^2 + ic\omega} \right) Y$$ 
-**6. Steady State Amplitude & Phase (Transmissibility):**
-* The magnitude ratio (Transmissibility) is:
-    $$\left| \frac{X}{Y} \right| = \sqrt{ \frac{k^2 + (c\omega)^2}{(k - m\omega^2)^2 + (c\omega)^2} }$$ 
-* Phase angle $\phi$:
-    $$\tan \phi = \frac{mc\omega^3}{k(k - m\omega^2) + (c\omega)^2}$$ 
-### **Question 2: Natural Frequencies and Mode Shapes (2-DOF System)**
-**Problem Statement:** Determine the natural frequencies, nodal frequencies, and mode shapes for the given system. 
-**1. System Configuration:**
-* **Arrangement:** Fixed Support — Spring ($k$) — Mass ($m$) — Spring ($k$) — Mass ($2m$) — Spring ($k$) — Fixed Support. 
-**2. Equations of Motion (Free Vibration):**
-Using D'Alembert's Principle: 
-* **For Mass 1 ($m$):**
-    $$m\ddot{x}_1 + kx_1 + k(x_1 - x_2) = 0 \Rightarrow m\ddot{x}_1 + 2kx_1 - kx_2 = 0$$ 
-* **For Mass 2 ($2m$):**
-    $$2m\ddot{x}_2 + kx_2 - k(x_1 - x_2) = 0 \Rightarrow 2m\ddot{x}_2 + 2kx_2 - kx_1 = 0$$ 
-**3. Harmonic Solution Assumption:**
-* Assume $x_1 = A_1 \sin(\omega t)$ and $x_2 = A_2 \sin(\omega t)$. 
-* Substitute into equations to get algebraic equations:
-    1.  $A_1(2k - m\omega^2) - kA_2 = 0$ 
-    2.  $-kA_1 + A_2(2k - 2m\omega^2) = 0$ 
-**4. Frequency Equation (Characteristic Equation):**
-* Set the determinant of coefficients to zero:
-    $$(2k - m\omega^2)(2k - 2m\omega^2) - k^2 = 0$$ 
-* Simplifies to: $2m^2\omega^4 - 6mk\omega^2 + 3k^2 = 0$. 
-* Solving for roots ($\lambda = \omega^2$) using quadratic formula:
-    $$\omega^2 = \frac{k}{m} \left( \frac{3 \pm \sqrt{3}}{2} \right)$$ 
-**5. Natural Frequencies:**
-* $\omega_1 = \sqrt{0.634 \frac{k}{m}}$ (Fundamental frequency) 
-* $\omega_2 = \sqrt{2.366 \frac{k}{m}}$ (Second frequency) 
-**6. Mode Shapes (Amplitude Ratios):**
-Using the first equation $\frac{A_1}{A_2} = \frac{k}{2k - m\omega^2}$: 
-* **For $\omega_1$ (First Mode):** Ratio $\frac{A_1}{A_2} \approx 0.731$. 
-    * Mode Vector: $\begin{Bmatrix} 0.731 \\ 1 \end{Bmatrix}$ 
-* **For $\omega_2$ (Second Mode):** Ratio $\frac{A_1}{A_2} \approx -2.73$. 
-    * Mode Vector: $\begin{Bmatrix} -2.73 \\ 1 \end{Bmatrix}$ 
-### **Question 3: Vibration Absorber Analysis**
-**Problem Statement:** Discuss the vibration absorber with the main system. 
-**1. Concept:**
-* A vibration absorber is a secondary system ($m_2, k_2$) attached to the main vibrating body ($m_1, k_1$) to reduce or eliminate vibration amplitude at a specific excitation frequency. 
-**2. System Setup:**
-* **Main System:** Mass $m_1$, Stiffness $k_1$, Excited by force $F \sin \omega t$. 
-* **Absorber:** Mass $m_2$, Stiffness $k_2$. 
-**3. Equations of Motion:**
-* **Main Mass ($m_1$):**
-    $$m_1\ddot{x}_1 + (k_1 + k_2)x_1 - k_2x_2 = F \sin \omega t$$ 
-* **Absorber Mass ($m_2$):**
-    $$m_2\ddot{x}_2 - k_2x_1 + k_2x_2 = 0$$ 
-**4. Solution for Amplitudes:**
-* Using matrix method for amplitudes $A_1$ and $A_2$: 
-* The denominator (Determinant $\Delta$) is:
-    $$\beta = m_1 m_2 \omega^4 - \{m_1 k_2 + m_2(k_1 + k_2)\} \omega^2 + k_1 k_2$$ 
-* **Amplitude of Main Mass ($A_1$):**
-    $$A_1 = \frac{(k_2 - m_2\omega^2)F}{\beta}$$ 
-* **Amplitude of Absorber Mass ($A_2$):**
-    $$A_2 = \frac{k_2 F}{\beta}$$ 
-**5. Tuning Condition (Zero Vibration):**
-* To make the main mass stationary ($A_1 = 0$), the numerator of the $A_1$ equation must be zero. 
-* $$k_2 - m_2\omega^2 = 0$$
-* **Result:** The absorber is tuned such that its natural frequency equals the excitation frequency:
-    $$\omega = \sqrt{\frac{k_2}{m_2}}$$ 
-**6. Frequency Response Ratios:**
-* The notes derive the ratios of amplitudes with respect to static deflection ($A_{st} = F/k_1$).
-* Mass ratio $\mu = m_2/m_1$. 
-* At the tuning frequency, the absorber amplitude is:
-    $$A_2 = -\frac{F}{k_2} = -\frac{k_1}{k_2} A_{st}$$ 
+### **Topic 1: Torsional Vibrations of a Uniform Rod**
+**Question:** Determine the equation for natural frequency of a uniform rod in torsional oscillations with one end fixed and the other free.
+**1. [cite_start]Assumptions & Setup** [cite: 5, 6, 7, 8]
+* Consider a uniform rod of length $L$.
+* Select a small element of length $dx$ at a distance $x$ from the fixed end.
+* Let $\theta$ be the angle of twist at distance $x$.
+* [cite_start]At distance $x + dx$, the twist is $\theta + \frac{\partial \theta}{\partial x}dx$. [cite: 16]
+* Let $T$ be the torque acting on the element.
+
+**2. [cite_start]Equation of Motion (Newton's Second Law)** [cite: 29, 32]
+Using Newton's second law for rotation: $\text{Net Torque} = \text{Mass Moment of Inertia} \times \text{Angular Acceleration}$
+$$(T + \frac{\partial T}{\partial x}dx) - T = I \cdot \frac{\partial^2 \theta}{\partial t^2}$$
+Simplifying the net torque:
+$$\frac{\partial T}{\partial x}dx = (J \rho dx) \frac{\partial^2 \theta}{\partial t^2}$$
+* [cite_start]Where $J$ is the polar moment of inertia ($\frac{\pi}{32}d^4$) and $\rho$ is the density. [cite: 27, 40]
+
+**3. [cite_start]Torque-Twist Relationship** [cite: 35]
+From the torsion equation $\frac{T}{J} = \frac{G \theta}{L}$, for an element it becomes:
+$$T = GJ \frac{\partial \theta}{\partial x}$$
+Differentiating with respect to $x$:
+$$\frac{\partial T}{\partial x} = GJ \frac{\partial^2 \theta}{\partial x^2}$$
+
+**4. [cite_start]The Wave Equation** [cite: 42, 43]
+Substituting the torque derivative back into the equation of motion:
+$$GJ \frac{\partial^2 \theta}{\partial x^2} dx = \rho J dx \frac{\partial^2 \theta}{\partial t^2}$$
+Canceling common terms ($J, dx$):
+$$\frac{\partial^2 \theta}{\partial x^2} = \frac{\rho}{G} \left( \frac{\partial^2 \theta}{\partial t^2} \right)$$
+Let wave speed $c = \sqrt{\frac{G}{\rho}}$. The equation becomes:
+$$\frac{\partial^2 \theta}{\partial x^2} = \frac{1}{c^2} \frac{\partial^2 \theta}{\partial t^2}$$
+
+**5. [cite_start]General Solution** [cite: 48, 53]
+Using separation of variables, let $\theta(x,t) = \theta(x)\sin(\omega t)$. The general solution for the spatial part is:
+$$\theta(x) = A \cos(kx) + B \sin(kx)$$
+Where $k = \omega \sqrt{\frac{\rho}{G}}$.
+
+**6. [cite_start]Boundary Conditions (Fixed-Free)** [cite: 55, 59]
+* **Condition 1 (Fixed End, $x=0$):** Twist $\theta = 0$.
+    $$A \cos(0) + B \sin(0) = 0 \implies A = 0$$
+    [cite_start]Therefore, equation reduces to: $\theta(x) = B \sin(kx)$. [cite: 58]
+
+* **Condition 2 (Free End, $x=L$):** Torque is zero, which means strain/slope $\frac{\partial \theta}{\partial x} = 0$.
+    $$\frac{\partial}{\partial x} (B \sin(kx)) = 0$$
+    $$Bk \cos(kL) = 0$$
+    [cite_start]Since $B \neq 0$ and $k \neq 0$, then $\cos(kL) = 0$. [cite: 65, 66]
+
+**7. [cite_start]Final Frequency Equation** [cite: 66, 68]
+The condition $\cos(kL) = 0$ implies:
+$$kL = \frac{(2n-1)\pi}{2} \quad \text{for } n=1, 2, 3...$$
+Substituting $k = \omega \sqrt{\frac{\rho}{G}}$:
+$$\omega_n \sqrt{\frac{\rho}{G}} L = \frac{(2n-1)\pi}{2}$$
+
+**Result:**
+$$\omega_n = \frac{(2n-1)\pi}{2L} \sqrt{\frac{G}{\rho}}$$
+### **Topic 2: Longitudinal Vibrations of a Uniform Bar**
+**Question:** Develop the expression for longitudinal vibration for a rectangular uniform bar. Derive specifically for:
+1.  One end fixed, one end free.
+2.  Both ends free.
+**Derivation / Answer:**
+
+**1. [cite_start]Assumptions & Setup** [cite: 71, 83]
+* Consider a uniform bar of length $L$, Cross-sectional Area $A$, Density $\rho$, and Modulus of Elasticity $E$.
+* Let $u$ be the displacement of a cross-section at distance $x$.
+* Consider an element of length $dx$.
+* Displacement at $x$ is $u$. [cite_start]Displacement at $x+dx$ is $u + \frac{\partial u}{\partial x}dx$. [cite: 86]
+
+**2. [cite_start]Equation of Motion** [cite: 93]
+Net Force = Mass $\times$ Acceleration
+$$(F + \frac{\partial F}{\partial x}dx) - F = m \frac{\partial^2 u}{\partial t^2}$$
+$$\frac{\partial F}{\partial x}dx = (\rho A dx) \frac{\partial^2 u}{\partial t^2}$$
+
+**3. [cite_start]Stress-Strain Relationship** [cite: 95]
+Force $F = \text{Stress} (\sigma) \times \text{Area} (A)$.
+Using Hooke's Law ($\sigma = E \epsilon$) and Strain $\epsilon = \frac{\partial u}{\partial x}$:
+$$F = AE \frac{\partial u}{\partial x}$$
+Differentiating with respect to $x$:
+$$\frac{\partial F}{\partial x} = AE \frac{\partial^2 u}{\partial x^2}$$
+
+**4. [cite_start]The Wave Equation** [cite: 97]
+Substituting Force derivative back into the equation of motion:
+$$AE \frac{\partial^2 u}{\partial x^2} dx = \rho A dx \frac{\partial^2 u}{\partial t^2}$$
+$$\frac{\partial^2 u}{\partial x^2} = \frac{\rho}{E} \frac{\partial^2 u}{\partial t^2}$$
+Let wave speed $a = \sqrt{\frac{E}{\rho}}$. The equation is:
+$$\frac{\partial^2 u}{\partial x^2} = \frac{1}{a^2} \frac{\partial^2 u}{\partial t^2}$$
+
+**5. [cite_start]General Solution** [cite: 115]
+$$X(x) = A \cos(px) + B \sin(px)$$
+Where $p = \frac{\omega}{a} = \omega \sqrt{\frac{\rho}{E}}$.
+
+**6. [cite_start]Case 1: One End Fixed, One End Free** [cite: 119, 120]
+* **At Fixed End ($x=0$):** Displacement $u=0$.
+    $$A \cos(0) + B \sin(0) = 0 \implies A = 0$$
+    [cite_start]Solution becomes: $X(x) = B \sin(px)$. [cite: 128]
+* **At Free End ($x=L$):** Stress is zero, so slope $\frac{\partial u}{\partial x} = 0$.
+    $$\frac{d}{dx}(B \sin(px)) = pB \cos(pL) = 0$$
+    [cite_start]$$\cos(pL) = 0 \implies pL = \frac{(2n-1)\pi}{2}$$ [cite: 132]
+* **Final Frequency:**
+    [cite_start]$$\omega_n = \frac{(2n-1)\pi}{2L} \sqrt{\frac{E}{\rho}}$$ [cite: 133]
+
+**7. [cite_start]Case 2: Both Ends Free** [cite: 134]
+* Boundary Conditions: Strain (slope) is zero at both ends. [cite_start]$\frac{\partial u}{\partial x} = 0$ at $x=0$ and $x=L$. [cite: 135]
+* **At $x=0$:**
+    $$X'(x) = -pA \sin(px) + pB \cos(px)$$
+    [cite_start]$$X'(0) = pB(1) = 0 \implies B = 0$$ [cite: 139]
+    Therefore, $X(x) = A \cos(px)$.
+* **At $x=L$:**
+    $$X'(L) = -pA \sin(pL) = 0$$
+    [cite_start]$$\sin(pL) = 0$$ [cite: 140]
+    [cite_start]$$pL = n\pi \quad \text{for } n=0, 1, 2...$$ [cite: 142]
+* **Final Frequency:**
+    [cite_start]$$\omega_n = \frac{n\pi}{L} \sqrt{\frac{E}{\rho}}$$ [cite: 144]
