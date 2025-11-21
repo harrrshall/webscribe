@@ -1,147 +1,74 @@
-Here is a comprehensive, exam-ready answer designed to secure full marks (10/10). It is structured logically, starting from first principles, moving through the mathematical derivation, and concluding with vector notation and special cases.
-
-***
-
-### Question: Derivation of 3D Continuity Equation in Cartesian Coordinates
-
-**Objective:** To derive the continuity equation based on the **Law of Conservation of Mass** for a fluid element in a Cartesian coordinate system ($x, y, z$).
-
-**Principle:** The principle states that mass can neither be created nor destroyed. For a fixed control volume, the net rate of mass flow into the volume plus the rate of accumulation of mass within the volume must equal zero.
-
-$$
-\text{Rate of Mass Accumulation} + \text{Net Rate of Mass Outflow} = 0
-$$
-
----
-
-### 1. System Configuration and Assumptions
-
-Consider a distinct fluid element (an infinitesimal control volume) in the shape of a rectangular parallelepiped with sides of length $dx$, $dy$, and $dz$ fixed in space.
-
-**Let:**
-* $\rho$ = Density of the fluid at the center of the element $(x, y, z)$ at time $t$.
-* $u, v, w$ = Velocity components in the $x, y,$ and $z$ directions, respectively.
-
-
-
-**Diagram Description:**
-Imagine a small cube.
-* **Left Face (Inlet $x$):** Located at distance $x$. Area = $dy \cdot dz$.
-* **Right Face (Outlet $x+dx$):** Located at distance $x + dx$. Area = $dy \cdot dz$.
-* Similar pairs exist for the $y$ (bottom/top) and $z$ (front/back) directions.
-
----
-
-### 2. Mass Balance Analysis (Direction by Direction)
-
-We analyze the mass flow rate ($\dot{m} = \rho \cdot \text{Velocity} \cdot \text{Area}$) across the faces.
-
-#### A. Flow in the X-Direction
-The mass entering the left face (at $x$) per unit time is:
-$$
-\dot{m}_{x, \text{in}} = \rho u \, dy \, dz
-$$
-
-The mass leaving the right face (at $x + dx$) is found using a **Taylor Series expansion** (neglecting higher-order terms):
-$$
-\dot{m}_{x, \text{out}} = \left( \rho u + \frac{\partial (\rho u)}{\partial x} dx \right) dy \, dz
-$$
-
-The **Net Mass Flow Rate** in the x-direction (Inflow - Outflow) is:
-$$
-d\dot{m}_x = \dot{m}_{x, \text{in}} - \dot{m}_{x, \text{out}}
-$$
-$$
-d\dot{m}_x = \rho u \, dy \, dz - \left( \rho u + \frac{\partial (\rho u)}{\partial x} dx \right) dy \, dz
-$$
-$$
-d\dot{m}_x = - \frac{\partial (\rho u)}{\partial x} dx \, dy \, dz
-$$
-
-#### B. Flow in the Y-Direction
-Similarly, for the bottom and top faces (area $dx \cdot dz$):
-$$
-d\dot{m}_y = - \frac{\partial (\rho v)}{\partial y} dx \, dy \, dz
-$$
-
-#### C. Flow in the Z-Direction
-Similarly, for the back and front faces (area $dx \cdot dy$):
-$$
-d\dot{m}_z = - \frac{\partial (\rho w)}{\partial z} dx \, dy \, dz
-$$
-
----
-
-### 3. Total Net Mass Flow
-The total net rate of mass entering the control volume is the sum of the net flows in all three directions:
-$$
-\text{Total Net Inflow} = - \left[ \frac{\partial (\rho u)}{\partial x} + \frac{\partial (\rho v)}{\partial y} + \frac{\partial (\rho w)}{\partial z} \right] dx \, dy \, dz
-$$
-
----
-
-### 4. Rate of Mass Accumulation
-The mass ($m$) contained within the control volume is:
-$$
-m = \rho \, (dx \, dy \, dz)
-$$
-
-Since the volume is fixed ($dx, dy, dz$ are constant), the rate of change of mass with respect to time is:
-$$
-\frac{\partial m}{\partial t} = \frac{\partial \rho}{\partial t} (dx \, dy \, dz)
-$$
-
----
-
-### 5. Final Derivation
-According to the conservation of mass:
-$$
-\text{Rate of Increase of Mass in CV} = \text{Total Net Mass Inflow}
-$$
-
-Substituting the terms derived above:
-$$
-\frac{\partial \rho}{\partial t} (dx \, dy \, dz) = - \left[ \frac{\partial (\rho u)}{\partial x} + \frac{\partial (\rho v)}{\partial y} + \frac{\partial (\rho w)}{\partial z} \right] (dx \, dy \, dz)
-$$
-
-Dividing the entire equation by the volume element $(dx \, dy \, dz)$:
-$$
-\frac{\partial \rho}{\partial t} = - \left[ \frac{\partial (\rho u)}{\partial x} + \frac{\partial (\rho v)}{\partial y} + \frac{\partial (\rho w)}{\partial z} \right]
-$$
-
-Rearranging terms to one side, we obtain the **General Continuity Equation in 3D Cartesian Coordinates**:
-
-$$
-\frac{\partial \rho}{\partial t} + \frac{\partial (\rho u)}{\partial x} + \frac{\partial (\rho v)}{\partial y} + \frac{\partial (\rho w)}{\partial z} = 0
-$$
-
----
-
-### 6. Vector Notation and Special Cases
-
-**Vector Form:**
-Using the gradient operator $\nabla = \hat{i}\frac{\partial}{\partial x} + \hat{j}\frac{\partial}{\partial y} + \hat{k}\frac{\partial}{\partial z}$ and velocity vector $\mathbf{V} = u\hat{i} + v\hat{j} + w\hat{k}$:
-
-$$
-\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{V}) = 0
-$$
-
-**Case I: Steady Flow**
-For steady flow, fluid properties do not change with time ($\frac{\partial \rho}{\partial t} = 0$). The equation becomes:
-$$
-\frac{\partial (\rho u)}{\partial x} + \frac{\partial (\rho v)}{\partial y} + \frac{\partial (\rho w)}{\partial z} = 0
-$$
-
-**Case II: Incompressible Flow (Most Common Engineering Application)**
-For incompressible fluids (like water or oil), density $\rho$ is constant.
-1.  $\frac{\partial \rho}{\partial t} = 0$
-2.  $\rho$ can be taken out of the spatial derivatives and divided out.
-
-This yields the continuity equation for incompressible flow:
-$$
-\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} = 0 \quad \text{or} \quad \nabla \cdot \mathbf{V} = 0
-$$
-
-***
-
-Would you like me to follow this up with the derivation for the **Euler’s Equation of Motion** or help you solve a numerical problem applying this continuity equation?
+### **1. Stefan–Boltzmann Law (Stefan’s Law)**
+This governing law of radiation states that the **total emissive power ($E_b$)** of a black body is directly proportional to the fourth power of its absolute temperature ($T$).
+**Mathematical Expression:**
+$$E_b = \sigma T^4$$
+Where:
+* $E_b$ = Total emissive power of a black body ($W/m^2$)
+* $\sigma$ = Stefan–Boltzmann constant ($5.67 \times 10^{-8} \, W/m^2K^4$)
+* $T$ = Absolute temperature ($K$)
+**Note:** For a non-black (real) body with emissivity $\varepsilon$, the equation becomes $E = \varepsilon \sigma T^4$.
+### **2. Monochromatic Emissive Power ($E_\lambda$)**
+Also known as spectral emissive power, this is defined as the rate of energy radiated per unit area, per unit time, per unit wavelength interval ($d\lambda$) at a specific wavelength ($\lambda$).
+* **Unit:** $W/m^2 \cdot \mu m$
+* It varies with both wavelength and temperature.
+### **3. Total Emissive Power ($E$)**
+Total emissive power is the total amount of radiant energy emitted by a body per unit area per unit time over the entire spectrum of wavelengths (from $\lambda = 0$ to $\lambda = \infty$).
+It is obtained by integrating the monochromatic emissive power over all wavelengths:
+$$E = \int_{0}^{\infty} E_\lambda \, d\lambda$$
+* **Unit:** $W/m^2$
+### **4. Wien’s Displacement Law**
+This law relates the temperature of a black body to the wavelength at which the emission is maximum. It states that the product of the absolute temperature ($T$) and the wavelength corresponding to maximum monochromatic emissive power ($\lambda_{max}$) is a constant.
+$$\lambda_{max} T = C_w$$
+Where $C_w$ is Wien’s constant ($2898 \, \mu m \cdot K$).
+* **Significance:** As the temperature increases, the peak of the radiation curve shifts toward shorter wavelengths (e.g., red hot $\to$ white hot).
+### **5. Planck’s Law**
+This is the fundamental law of quantum theory applied to radiation. It describes the spectral distribution of emissive power of a black body. It implies that radiation is emitted in discrete packets (quanta) rather than continuously.
+$$E_{b\lambda} = \frac{C_1}{\lambda^5 (e^{C_2 / \lambda T} - 1)}$$
+Where $C_1$ and $C_2$ are experimental radiation constants.
+* **Note:** Both Stefan’s Law and Wien’s Law can be mathematically derived from Planck’s Law.
+### **6. Black Body**
+A black body is an idealized physical body that serves as a standard for radiation comparison.
+* **Key Properties:**
+    1.  It absorbs all incident radiation, regardless of wavelength or direction ($\alpha = 1$).
+    2.  It is a perfect emitter; for a given temperature and wavelength, no surface can emit more energy than a black body.
+    3.  It is a diffuse emitter (follows Lambert’s Cosine Law).
+* **Visual approximation:** A small hole in a large, insulated hollow sphere (cavity radiator). Any ray entering the hole is trapped by multiple internal reflections.
+### **7. White Body**
+A theoretical body that reflects all incident thermal radiation.
+* It does not absorb or transmit any radiation.
+* **Properties:** Reflectivity $\rho = 1$, Absorptivity $\alpha = 0$, Transmissivity $\tau = 0$.
+### **8. Grey Body**
+A grey body is a real surface for which the **monochromatic emissivity ($\varepsilon_\lambda$)** is constant and independent of the wavelength ($\lambda$).
+* **Mathematical Condition:** $\varepsilon_\lambda = \varepsilon = \text{constant}$.
+* The spectral distribution curve of a grey body is identical in shape to that of a black body but reduced by the factor of emissivity $\varepsilon$. This assumption simplifies engineering calculations significantly.
+### **9. Lambert’s Cosine Law**
+This law states that the total emissive power ($E_\theta$) from a diffuse radiating surface in a particular direction is proportional to the cosine of the angle ($\theta$) made by that direction with the normal to the surface.
+$$I_\theta = I_n \cos \theta$$
+Where:
+* $I_\theta$ = Intensity of radiation at angle $\theta$
+* $I_n$ = Intensity of radiation normal to the surface
+* **Implication:** A black body (diffuse emitter) appears equally bright from all viewing directions.
+### **Radiation Properties ($\alpha, \rho, \tau, \varepsilon$)**
+When radiation ($G$) strikes a surface, it is divided into three parts: reflected ($G_\rho$), absorbed ($G_\alpha$), and transmitted ($G_\tau$). By conservation of energy:
+$$G_\alpha + G_\rho + G_\tau = G$$
+Dividing by total irradiation $G$:
+$$\alpha + \rho + \tau = 1$$
+#### **10. Reflectivity ($\rho$)**
+The fraction of total incident radiation that is reflected by the surface.
+$$\rho = \frac{G_\rho}{G}$$
+* Depends on the surface finish and direction of incidence.
+#### **11. Transmissivity ($\tau$)**
+The fraction of total incident radiation that passes (transmits) through the body.
+$$\tau = \frac{G_\tau}{G}$$
+* For opaque bodies (solids/liquids), $\tau = 0$.
+* For gases, $\tau$ is significant.
+#### **12. Absorptivity ($\alpha$)**
+The fraction of total incident radiation that is absorbed by the surface.
+$$\alpha = \frac{G_\alpha}{G}$$
+* According to Kirchhoff's Law, for a body in thermal equilibrium, $\alpha = \varepsilon$.
+#### **13. Emissivity ($\varepsilon$)**
+A measure of how effectively a real surface radiates energy compared to a black body. It is defined as the ratio of the emissive power of a real body ($E$) to the emissive power of a black body ($E_b$) at the same temperature.
+$$\varepsilon = \frac{E}{E_b}$$
+* **Range:** $0 \le \varepsilon \le 1$
+* For a perfect black body, $\varepsilon = 1$.
+* For highly polished metals, $\varepsilon$ is very low (near 0).
