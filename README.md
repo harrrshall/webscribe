@@ -1,97 +1,76 @@
-### **Example 5.10: Natural Frequency of Coupled Pendulums (Newton's Method)**
 
-**Problem Statement:**
-Consider two pendulums of length $L$ as shown in the figure. Determine the natural frequency of each pendulum.
-**Given Data:**
-* Spring stiffness, $k = 100 \text{ N/m}$
-* Mass 1, $m_1 = 2 \text{ kg}$
-* Mass 2, $m_2 = 5 \text{ kg}$
-* Length, $L = 0.20 \text{ m}$
-* Distance of spring from pivot, $a = 0.10 \text{ m}$
 
-**Solution:**
-
-**1. Equations of Motion (Taking Moments):**
-Let us say $\theta_1$ and $\theta_2$ are very small angular displacements. Taking moments about pivot points $A$ and $B$:
-
-For mass 1:
-$$m_1 L^2 \ddot{\theta}_1 = -m_1 g L \theta_1 - k a^2 (\theta_1 - \theta_2)$$
-
-For mass 2:
-$$m_2 L^2 \ddot{\theta}_2 = -m_2 g L \theta_2 - k a^2 (\theta_2 - \theta_1)$$
-
-**2. Assuming Harmonic Solution:**
-Let us assume the solution of the form:
-$$\theta_1 = \phi_1 \sin \omega t$$
-$$\theta_2 = \phi_2 \sin \omega t$$
-
-Substituting these values (where $\ddot{\theta} = -\omega^2 \phi \sin \omega t$) into the equations of motion:
-
-$$-m_1 \omega^2 L^2 \phi_1 + m_1 g L \phi_1 + k a^2 (\phi_1 - \phi_2) = 0$$
-$$-m_2 \omega^2 L^2 \phi_2 + m_2 g L \phi_2 + k a^2 (\phi_2 - \phi_1) = 0$$
-
-Rearranging terms:
-$$(-m_1 \omega^2 L^2 + m_1 g L + k a^2) \phi_1 - k a^2 \phi_2 = 0$$
-$$(-m_2 \omega^2 L^2 + m_2 g L + k a^2) \phi_2 - k a^2 \phi_1 = 0$$
-
-**3. Amplitude Ratio and Frequency Equation:**
-$$\frac{\phi_1}{\phi_2} = \frac{k a^2}{-m_1 \omega^2 L^2 + m_1 g L + k a^2} = \frac{-m_2 \omega^2 L^2 + m_2 g L + k a^2}{k a^2}$$
-
-The frequency equation is obtained by cross-multiplying (determinant equals zero):
-$$(-m_1 \omega^2 L^2 + m_1 g L + k a^2)(-m_2 \omega^2 L^2 + m_2 g L + k a^2) - k^2 a^4 = 0$$
-
-Expanding and simplifying this leads to the characteristic equation:
-$$\omega^4 - \left[ \frac{g}{L} + \frac{k a^2}{m_1 L^2} + \frac{g}{L} + \frac{k a^2}{m_2 L^2} \right] \omega^2 + \frac{g^2}{L^2} + \frac{k a^2 g}{m_2 L^3} + \frac{k a^2 g}{m_1 L^3} = 0$$
-
-**4. Numerical Calculation:**
-Substituting the given values ($g=9.81, L=0.2, a=0.1, k=100, m_1=2, m_2=5$):
-
-$$\omega^4 - \omega^2 \left[ \frac{2 \times 9.81}{0.2} + \frac{100 \times 0.1 \times 0.1}{5 \times 0.2 \times 0.2} + \frac{100 \times 0.1 \times 0.1}{2 \times 0.2 \times 0.2} \right] + \dots = 0$$
-*(Note: The simplified equation from the image is used below)*
-
-$$\omega^4 - \omega^2 (98.1 + 5 + 12.5) + 2405.9 + 245.25 + 613.125 = 0$$
-$$\omega^4 - 115.6 \omega^2 + 3264.275 = 0$$
-
-Solving the quadratic for $\omega^2$:
-$$\omega^2 = \frac{115.6 \pm \sqrt{13363.36 - 13057.1}}{2}$$
-$$\omega^2 = \frac{115.6 \pm 17.5}{2}$$
-
-This gives two values for $\omega^2$:
-1.  $\omega_1 = \sqrt{66.55} \approx 8.15 \text{ rad/sec}$
-2.  $\omega_2 = \sqrt{49.05} \approx 7 \text{ rad/sec}$
-
-**Final Answer:**
-$$\omega_1 = 8.15 \text{ rad/sec}, \quad \omega_2 = 7 \text{ rad/sec}$$
-
-### **Example 5.11: Solution using Lagrange's Equation**
-
-**Problem Statement:**
-Solve Example 5.10 by using Lagrange's equation.
-
-**Solution:**
-
-**1. Energy Formulations:**
-* **Kinetic Energy (K.E.):**
-    $$K.E. = \frac{1}{2} m_1 L^2 \dot{\theta}_1^2 + \frac{1}{2} m_2 L^2 \dot{\theta}_2^2$$
-
-* **Potential Energy (P.E.):**
-    $$P.E. = m_1 g L (1 - \cos \theta_1) + m_2 g L (1 - \cos \theta_2) + \frac{1}{2} k (a \theta_2 - a \theta_1)^2$$
-
-**2. Applying Lagrange's Equation:**
-For coordinate $\theta_1$:
-$$\frac{d}{dt} \left( \frac{\partial K.E.}{\partial \dot{\theta}_1} \right) - \frac{\partial K.E.}{\partial \theta_1} + \frac{\partial P.E.}{\partial \theta_1} = 0$$
-
-* Derivatives:
-    $$\frac{d}{dt} \left( \frac{\partial K.E.}{\partial \dot{\theta}_1} \right) = m_1 L^2 \ddot{\theta}_1$$
-    $$\frac{\partial K.E.}{\partial \theta_1} = 0$$
-    $$\frac{\partial P.E.}{\partial \theta_1} = m_1 g L \sin \theta_1 - k a (a \theta_2 - a \theta_1)$$
-
-* First Equation of Motion:
-    $$m_1 L^2 \ddot{\theta}_1 + m_1 g L \sin \theta_1 - k a^2 (\theta_2 - \theta_1) = 0$$
-    Assuming small angles ($\sin \theta_1 \approx \theta_1$):
-    $$m_1 L^2 \ddot{\theta}_1 + m_1 g L \theta_1 - k a^2 (\theta_2 - \theta_1) = 0$$
-
-* Second Equation of Motion (Similarly derived):
-    $$m_2 L^2 \ddot{\theta}_2 + m_2 g L \theta_2 + k a^2 (\theta_2 - \theta_1) = 0$$
-
-*(Note: These equations match those derived in Example 5.10, so the frequency calculation follows the same steps as above.)*
+**Topic:** Derivation of the Differential Continuity Equation (Conservation of Mass)
+**Coordinate System:** Cylindrical Polar $(r, \theta, z)$
+### 1. Fundamental Principle
+The continuity equation is the mathematical expression of the **Law of Conservation of Mass**. For any fixed control volume within a fluid flow field, the principle states:
+$$\text{Rate of accumulation of mass within CV} = \text{Mass flow rate IN} - \text{Mass flow rate OUT}$$
+### 2. Control Volume Specification
+We consider an infinitesimal, stationary control volume (CV) in a cylindrical coordinate system defined by $(r, \theta, z)$.
+* **Radial coordinate:** $r$ to $r + dr$
+* **Azimuthal (Tangential) coordinate:** $\theta$ to $\theta + d\theta$
+* **Axial coordinate:** $z$ to $z + dz$
+**Key Geometric Properties:**
+Unlike Cartesian coordinates, the cross-sectional area in the radial direction changes with distance $r$.
+* **Volume of element ($dV$):** $r \, dr \, d\theta \, dz$
+* **Face Area perpendicular to $r$:** $A_r = (r \, d\theta) \, dz$
+* **Face Area perpendicular to $\theta$:** $A_\theta = dr \, dz$
+* **Face Area perpendicular to $z$:** $A_z = (r \, d\theta) \, dr$
+**Velocity Vector:** $\mathbf{V} = v_r \hat{e}_r + v_\theta \hat{e}_\theta + v_z \hat{e}_z$
+**Density:** $\rho = \rho(r, \theta, z, t)$
+### 3. Mass Flux Analysis
+We analyze the mass flow rate ($\dot{m} = \rho \cdot \text{Velocity} \cdot \text{Area}$) across the faces in all three directions.
+#### A. Radial Direction ($r$)
+* **Mass In (at face $r$):**
+    $$\dot{m}_r = \rho v_r (r \, d\theta \, dz)$$
+* **Mass Out (at face $r + dr$):**
+    Using a Taylor Series expansion and neglecting higher-order terms:
+    $$\dot{m}_{r+dr} = \dot{m}_r + \frac{\partial}{\partial r}(\dot{m}_r) dr$$
+    $$\dot{m}_{r+dr} = \left[ \rho v_r r \, d\theta \, dz \right] + \frac{\partial}{\partial r}(\rho v_r r \, d\theta \, dz) dr$$
+* **Net Mass Flux in $r$ (In - Out):**
+    $$\text{Net}_r = - \frac{\partial}{\partial r}(\rho v_r r) \, dr \, d\theta \, dz$$
+#### B. Azimuthal Direction ($\theta$)
+* **Mass In (at face $\theta$):**
+    $$\dot{m}_\theta = \rho v_\theta (dr \, dz)$$
+* **Mass Out (at face $\theta + d\theta$):**
+    $$\dot{m}_{\theta+d\theta} = \dot{m}_\theta + \frac{\partial}{\partial \theta}(\dot{m}_\theta) d\theta$$
+    $$\dot{m}_{\theta+d\theta} = \left[ \rho v_\theta dr \, dz \right] + \frac{\partial}{\partial \theta}(\rho v_\theta dr \, dz) d\theta$$
+* **Net Mass Flux in $\theta$ (In - Out):**
+    $$\text{Net}_\theta = - \frac{\partial}{\partial \theta}(\rho v_\theta) \, d\theta \, dr \, dz$$
+#### C. Axial Direction ($z$)
+* **Mass In (at face $z$):**
+    $$\dot{m}_z = \rho v_z (r \, d\theta \, dr)$$
+* **Mass Out (at face $z + dz$):**
+    $$\dot{m}_{z+dz} = \dot{m}_z + \frac{\partial}{\partial z}(\dot{m}_z) dz$$
+    $$\dot{m}_{z+dz} = \left[ \rho v_z r \, d\theta \, dr \right] + \frac{\partial}{\partial z}(\rho v_z r \, d\theta \, dr) dz$$
+* **Net Mass Flux in $z$ (In - Out):**
+    Since $r$, $d\theta$, and $dr$ are independent of $z$:
+    $$\text{Net}_z = - \frac{\partial}{\partial z}(\rho v_z) \, r \, dr \, d\theta \, dz$$
+### 4. Rate of Accumulation
+The rate of change of mass stored inside the control volume is the time derivative of the mass ($m = \rho dV$). Since the volume element is fixed in space:
+$$\frac{\partial m}{\partial t} = \frac{\partial (\rho \, dV)}{\partial t} = \frac{\partial \rho}{\partial t} (r \, dr \, d\theta \, dz)$$
+### 5. Assembling the Continuity Equation
+Applying the conservation law:
+$$\frac{\partial m}{\partial t} = \text{Net}_r + \text{Net}_\theta + \text{Net}_z$$
+Substitute the derived terms:
+$$\frac{\partial \rho}{\partial t} (r \, dr \, d\theta \, dz) = - \left[ \frac{\partial}{\partial r}(\rho v_r r) + \frac{\partial}{\partial \theta}(\rho v_\theta) + r \frac{\partial}{\partial z}(\rho v_z) \right] dr \, d\theta \, dz$$
+**Simplification:**
+Divide the entire equation by the volume of the element $(r \, dr \, d\theta \, dz)$. *Note that in the $\theta$ term, dividing by $r$ is necessary because the original volume term contains $r$.*
+1.  Divide by $dr \, d\theta \, dz$:
+    $$r \frac{\partial \rho}{\partial t} = - \left[ \frac{\partial}{\partial r}(\rho v_r r) + \frac{\partial}{\partial \theta}(\rho v_\theta) + r \frac{\partial}{\partial z}(\rho v_z) \right]$$
+2.  Divide by $r$ and rearrange all terms to the left side:
+$$\frac{\partial \rho}{\partial t} + \frac{1}{r}\frac{\partial (r \rho v_r)}{\partial r} + \frac{1}{r}\frac{\partial (\rho v_\theta)}{\partial \theta} + \frac{\partial (\rho v_z)}{\partial z} = 0$$
+### 6. Final Result and Special Cases
+**The General Continuity Equation (Compressible Flow):**
+$$\frac{\partial \rho}{\partial t} + \frac{1}{r}\frac{\partial (\rho r v_r)}{\partial r} + \frac{1}{r}\frac{\partial (\rho v_\theta)}{\partial \theta} + \frac{\partial (\rho v_z)}{\partial z} = 0$$
+This equation is valid for unsteady, compressible flow in cylindrical coordinates.
+**Special Case 1: Steady Flow**
+For steady flow, fluid properties do not change with time ($\frac{\partial \rho}{\partial t} = 0$):
+$$\frac{1}{r}\frac{\partial (\rho r v_r)}{\partial r} + \frac{1}{r}\frac{\partial (\rho v_\theta)}{\partial \theta} + \frac{\partial (\rho v_z)}{\partial z} = 0$$
+**Special Case 2: Incompressible Flow**
+For incompressible flow, density is constant ($\rho = C$). We can divide the entire equation by $\rho$:
+$$\frac{1}{r}\frac{\partial (r v_r)}{\partial r} + \frac{1}{r}\frac{\partial v_\theta}{\partial \theta} + \frac{\partial v_z}{\partial z} = 0$$
+Or, expanded:
+$$\frac{v_r}{r} + \frac{\partial v_r}{\partial r} + \frac{1}{r}\frac{\partial v_\theta}{\partial \theta} + \frac{\partial v_z}{\partial z} = 0$$
+### 7. Conclusion
+The derivation successfully accounts for the changing cross-sectional area in the radial direction (represented by the term $\frac{1}{r}\frac{\partial(r...)}{\partial r}$), which distinguishes cylindrical coordinates from Cartesian. This equation is the fundamental requirement for mass conservation in fluid dynamics analysis involving pipes, rotating machinery, and axisymmetric flows.
