@@ -54,7 +54,6 @@ Plot **μ vs (ZN/P)**. Shows transition:
 • **New material layer** added on top
 • Examples: **Electroplating, PVD, CVD**
 ## **Q4. Lubricant Additives (3 Types + Functions)**
-
 • **Anti-wear (AW):** Protective film under load (e.g., **ZDDP**)
 • **Viscosity Index Improvers:** Maintain viscosity at high T
 • **Antioxidants:** Prevent oxidation, sludge, acid formation
